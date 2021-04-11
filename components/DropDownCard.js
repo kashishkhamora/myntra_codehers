@@ -2,9 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native'
 import Badge from './Badge'
-import { WALLET_TYPES } from '../walletData'
+import { GROUP_TYPES } from '../walletData'
 
-const WalletCard = ({ id, label, value, type, isSelected, onPress }) => (
+const DropDownCard = ({ id, label, value, type, isSelected, onPress }) => (
   <TouchableOpacity
     activeOpacity={isSelected ? 1 : 0.7}
     onPress={() => onPress(id)}
@@ -23,11 +23,11 @@ const WalletCard = ({ id, label, value, type, isSelected, onPress }) => (
   </TouchableOpacity>
 )
 
-WalletCard.propTypes = {
+DropDownCard.propTypes = {
   id: PropTypes.number.isRequired,
   label: PropTypes.string.isRequired,
   value: PropTypes.number.isRequired,
-  type: PropTypes.oneOf(Object.values(WALLET_TYPES)).isRequired,
+  type: PropTypes.oneOf(Object.values(GROUP_TYPES)).isRequired,
   onPress: PropTypes.func.isRequired,
   isSelected: PropTypes.bool.isRequired
 }
@@ -63,4 +63,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default WalletCard
+export default DropDownCard

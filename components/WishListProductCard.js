@@ -1,14 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { View, Text, StyleSheet, Image } from 'react-native'
-import { WALLET_TYPES } from '../walletData'
-import {Comment} from './Comment';
+import { GROUP_TYPES } from '../walletData'
+
 import Badge from './Badge'
 
-const WalletRow = ({ children }) => (
+const WishListRow = ({ children }) => (
   <View
     style={[
-      styles.walletRow,
+      styles.wishListRow,
       { justifyContent: Array.isArray(children) ? 'space-between' : 'center' }
     ]}
   >
@@ -16,7 +16,7 @@ const WalletRow = ({ children }) => (
   </View>
 )
 
-const WalletDetails = ({ product }) => {
+const WishListProductCard = ({ product }) => {
   
   return (
   <View style={styles.wrapper}>
@@ -26,13 +26,13 @@ const WalletDetails = ({ product }) => {
     /> 
   </View>)
   
-  }
+}
 
-WalletDetails.defaultProps = {
+WishListProductCard.defaultProps = {
   product: {}
 }
 
-WalletDetails.propTypes = {
+WishListProductCard.propTypes = {
   product: PropTypes.shape({
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     shadowRadius: 10,
     shadowOffset: { width: 0, height: 4 }
   },
-  walletRow: {
+  wishListRow: {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
@@ -85,4 +85,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default WalletDetails
+export default WishListProductCard

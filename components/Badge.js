@@ -1,10 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Text, StyleSheet } from 'react-native'
-import { WALLET_TYPES } from '../walletData'
+import { GROUP_TYPES } from '../walletData'
 
 const Badge = ({ type }) => (
-  <Text style={[ styles.badge, type === WALLET_TYPES.PERSONAL ? styles.personal : styles.group ]}>
+  <Text style={[ styles.badge, type === GROUP_TYPES.PERSONAL ? styles.personal : styles.group ]}>
     {type}
   </Text>
 )

@@ -7,9 +7,9 @@ import {
 import { createStackNavigator } from 'react-navigation-stack'
 import { Ionicons } from 'react-native-vector-icons'
 import Screen from '../Screen'
-import WalletScreen from '../WalletScreen'
+import WishListScreen from '../WishListScreen'
 import HeaderDropdown from '../HeaderDropdown'
-import { WALLET_DATA } from '../../walletData'
+import { WISHLIST_DATA } from '../../walletData'
 
 const ACTIVE_TAB_COLOR = '#69A6F7'
 const INACTIVE_TAB_COLOR = '#aaa'
@@ -36,16 +36,16 @@ const Icon = ({ name, focused }) => (
 
 export default createBottomTabNavigator(
   {
-    TAB_WALLET: {
+    TAB_WISHLIST: {
       screen: createStackNavigator({
-        Wallet: {
-          screen: () => <WalletScreen wallets={WALLET_DATA} />,
-          path: '/wallet/:selectedWalletId',
+        Wishlist: {
+          screen: () => <WishListScreen wishLists={WISHLIST_DATA} />,
+          path: '/wishlist/:selectedWishListID',
           navigationOptions: ({ navigation }) => {
-            const selectedWalletId = navigation.getParam('selectedWalletId')
-            const title = selectedWalletId
-              ? WALLET_DATA.find(w => w.id === selectedWalletId).label
-              : WALLET_DATA[0].label
+            const selectedWishListID = navigation.getParam('selectedWishListID')
+            const title = selectedWishListID
+              ? WISHLIST_DATA.find(w => w.id === selectedWishListID).label
+              : WISHLIST_DATA[0].label
 
             return {
               headerTitle: () => <HeaderDropdown title={title} />,
@@ -55,62 +55,42 @@ export default createBottomTabNavigator(
         }
       }),
       navigationOptions: ({ navigation }) => {
-        const walletScreen = navigation.state.routes.find(
-          obj => obj.routeName === 'Wallet'
+        const WishListScreen = navigation.state.routes.find(
+          obj => obj.routeName === 'Wishlist'
         )
 
         const isTabBarVisible = _.get(
-          walletScreen,
-          'params.isWalletDropdownVisible'
+          WishListScreen,
+          'params.isWishListDropdownVisible'
         )
 
         return {
           tabBarVisible: !isTabBarVisible,
-          tabBarLabel: 'Wallet',
+          tabBarLabel: 'Wishlist',
           tabBarIcon: ({ focused }) => (
             <Icon name='ios-wallet' focused={focused} />
           )
         }
       }
     },
-    TAB_SEND: {
+    TAB_SHOP: {
       screen: createStackNavigator({
-        Send: {
+        Shop: {
           screen: () => (
             <Screen>
-              <Text style={{ textAlign: 'center' }}>Send Screen</Text>
+              <Text style={{ textAlign: 'center' }}>Shop Screen</Text>
             </Screen>
           ),
-          path: '/send',
+          path: '/shop',
           navigationOptions: {
-            title: 'Send',
+            title: 'Shop',
             ...headerStyles
           }
         }
       }),
       navigationOptions: {
-        tabBarLabel: 'Send',
+        tabBarLabel: 'Shop',
         tabBarIcon: ({ focused }) => <Icon name='ios-send' focused={focused} />
-      }
-    },
-    TAB_ACTIVITIES: {
-      screen: createStackNavigator({
-        Activities: {
-          screen: () => (
-            <Screen>
-              <Text style={{ textAlign: 'center' }}>Activities Screen</Text>
-            </Screen>
-          ),
-          path: '/activities',
-          navigationOptions: {
-            title: 'Activities',
-            ...headerStyles
-          }
-        }
-      }),
-      navigationOptions: {
-        tabBarLabel: 'Activities',
-        tabBarIcon: ({ focused }) => <Icon name='ios-list' focused={focused} />
       }
     }
   },

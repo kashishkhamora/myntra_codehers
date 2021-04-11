@@ -6,18 +6,18 @@ import { Ionicons } from 'react-native-vector-icons'
 
 class HeaderDropdown extends React.Component {
   toggleDropdownVisibility = () => {
-    const isWalletDropdownVisible = this.props.navigation.getParam(
-      'isWalletDropdownVisible'
+    const isWishListDropdownVisible = this.props.navigation.getParam(
+      'isWishListDropdownVisible'
     )
 
     this.props.navigation.setParams({
-      isWalletDropdownVisible: !isWalletDropdownVisible
+      isWishListDropdownVisible: !isWishListDropdownVisible
     })
   }
 
   render () {
-    const isWalletDropdownVisible = this.props.navigation.getParam(
-      'isWalletDropdownVisible'
+    const isWishListDropdownVisible = this.props.navigation.getParam(
+      'isWishListDropdownVisible'
     )
 
     return (
@@ -30,7 +30,7 @@ class HeaderDropdown extends React.Component {
           <Text style={styles.text}>{this.props.title}</Text>
           <View style={styles.iconWrap}>
             <Ionicons
-              name={isWalletDropdownVisible ? 'ios-arrow-up' : 'ios-arrow-down'}
+              name={isWishListDropdownVisible ? 'ios-arrow-up' : 'ios-arrow-down'}
               color={'rgba(255, 255, 255, 0.7)'}
               size={14}
             />

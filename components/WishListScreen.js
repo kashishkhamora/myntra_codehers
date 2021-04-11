@@ -3,44 +3,42 @@ import PropTypes from 'prop-types'
 import { withNavigation } from 'react-navigation'
 import { View, StyleSheet } from 'react-native'
 import Screen from './Screen'
-import WalletCard from './WalletCard'
-import WalletDetails from './WalletDetails'
-import { WALLET_TYPES } from '../walletData'
-import { DATA } from '../walletData'
+import DropDownCard from './DropDownCard'
+import WishListProductCard from './WishListProductCard'
+import { GROUP_TYPES } from '../walletData'
 
-const WalletScreen = ({ navigation, wallets }) => {
-  const isWalletDropdownVisible = navigation.getParam('isWalletDropdownVisible')
-  const selectedWalletId =
-    navigation.getParam('selectedWalletId') || wallets[0].id
-  const wallet = wallets.find(w => w.id === selectedWalletId)
-  console.log(wallet);
+const WishListscreen = ({ navigation, wishLists }) => {
+  const isWishListDropdownVisible = navigation.getParam('isWishListDropdownVisible')
+  const selectedWishListID =
+    navigation.getParam('selectedWishListID') || wishLists[0].id
+  const wishList = wishLists.find(w => w.id === selectedWishListID)
 
-  const handleSelectWalletCard = id => {
+  const handleSelectWishListCard = id => {
     navigation.setParams({
-      selectedWalletId: id,
-      isWalletDropdownVisible: !isWalletDropdownVisible
+      selectedWishListID: id,
+      isWishListDropdownVisible: !isWishListDropdownVisible
     })
   }
 
   return (
-    <Screen scrollEnabled={!isWalletDropdownVisible}>
-      {isWalletDropdownVisible ? (
-        <Screen style={styles.walletCardWrap}>
-          {wallets.map(w => (
-            <WalletCard
+    <Screen scrollEnabled={!isWishListDropdownVisible}>
+      {isWishListDropdownVisible ? (
+        <Screen style={styles.wishListCardWrap}>
+          {wishLists.map(w => (
+            <DropDownCard
               key={w.id}
               id={w.id}
               label={w.label}
               value={w.value}
               type={w.type}
-              isSelected={w.id === selectedWalletId}
-              onPress={handleSelectWalletCard}
+              isSelected={w.id === selectedWishListID}
+              onPress={handleSelectWishListCard}
             />
           ))}
         </Screen>
       ) : <View style={styles.card}>
-            {wallet.products.map(p=>(
-              <WalletDetails product={p} />
+            {wishList.products.map(p=>(
+              <WishListProductCard product={p} />
             ))}
           </View>
       }
@@ -49,18 +47,18 @@ const WalletScreen = ({ navigation, wallets }) => {
   )
 }
 
-WalletScreen.defaultProps = {
-  wallets: []
+WishListscreen.defaultProps = {
+  wishLists: []
 }
 
-WalletScreen.propTypes = {
+WishListscreen.propTypes = {
   navigation: PropTypes.object.isRequired,
-  wallets: PropTypes.arrayOf(
+  wishLists: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
       label: PropTypes.string.isRequired,
       value: PropTypes.number.isRequired,
-      type: PropTypes.oneOf(Object.values(WALLET_TYPES)).isRequired,
+      type: PropTypes.oneOf(Object.values(GROUP_TYPES)).isRequired,
       message: PropTypes.string,
       products: PropTypes.arrayOf(
         PropTypes.shape({
@@ -75,7 +73,7 @@ WalletScreen.propTypes = {
 }
 
 const styles = StyleSheet.create({
-  walletCardWrap: {
+  wishListCardWrap: {
     ...StyleSheet.absoluteFillObject,
     zIndex: 1,
     backgroundColor: 'rgba(100, 100, 100, 0.8)'
@@ -85,4 +83,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default withNavigation(WalletScreen)
+export default withNavigation(WishListscreen)
