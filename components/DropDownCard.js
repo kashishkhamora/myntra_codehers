@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native'
 import Badge from './Badge'
-import { GROUP_TYPES } from '../walletData'
+import { GROUP_TYPES } from '../wishListData'
 
 const DropDownCard = ({ id, label, value, type, isSelected, onPress }) => (
   <TouchableOpacity

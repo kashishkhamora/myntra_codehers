@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { View, Text, StyleSheet, Image } from 'react-native'
-import { GROUP_TYPES } from '../walletData'
+import { GROUP_TYPES } from '../wishListData'
 
 import Badge from './Badge'
 

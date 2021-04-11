@@ -5,7 +5,7 @@ import { View, StyleSheet } from 'react-native'
 import Screen from './Screen'
 import DropDownCard from './DropDownCard'
 import WishListProductCard from './WishListProductCard'
-import { GROUP_TYPES } from '../walletData'
+import { GROUP_TYPES } from '../wishListData'
 
 const WishListscreen = ({ navigation, wishLists }) => {
   const isWishListDropdownVisible = navigation.getParam('isWishListDropdownVisible')

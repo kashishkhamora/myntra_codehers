@@ -9,7 +9,7 @@ import { Ionicons } from 'react-native-vector-icons'
 import Screen from '../Screen'
 import WishListScreen from '../WishListScreen'
 import HeaderDropdown from '../HeaderDropdown'
-import { WISHLIST_DATA } from '../../walletData'
+import { WISHLIST_DATA } from '../../wishListData'
 
 const ACTIVE_TAB_COLOR = '#69A6F7'
 const INACTIVE_TAB_COLOR = '#aaa'
